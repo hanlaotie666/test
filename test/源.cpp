@@ -8,5 +8,7 @@ int main()
 	cout << "wojinxingxiugai1" << endl;
 	cout << "hello,world" << endl;
 	cout << "wojinxingxiugai1" << endl;
+	cout << "hello,world" << endl;
+	cout << "wojinxingxiugai1" << endl;
 	return 0;
 }
