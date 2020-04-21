@@ -7,5 +7,6 @@ int main()
 	cout<<"new"<<endl;
 	return 0;
 	return 0；
+	return 0；
 }
 
