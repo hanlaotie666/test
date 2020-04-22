@@ -3,7 +3,31 @@
 #include<math.h>
 #include<algorithm>
 using namespace std;
-
+#include<iostream>
+#include<vector>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+#include<iostream>
+#include<vector>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+#include<iostream>
+#include<vector>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+#include<iostream>
+#include<vector>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+#include<iostream>
+#include<vector>
+#include<math.h>
+#include<algorithm>
+using namespace std;
 class Solution {
 public:
 	int n;
