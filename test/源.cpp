@@ -1,49 +1,32 @@
 #include<iostream>
-#include<unordered_map>
-#include<vector>
+#include<string>
 using namespace std;
-
 class Solution {
 public:
-	bool checkSubarraySum(vector<int>& nums, int k) {
-		int n = nums.size();
-		if (n == 0) return false;
-		if (k == 0) {
-			for (int i = 1; i < n; i++)
-				if (nums[i - 1] == nums[i] && nums[i] == 0) return true;
-			return false;
-		}
-		vector<int> preSum(n,0);
-		unordered_map<int, vector<int>> MyMap;//key 表示preSum[i] % k,value 表示下标的vector
-		preSum[0] = nums[0];
-		MyMap[preSum[0] % k].push_back(0);
-		MyMap[0].push_back(-1);				//当余数为0时，特殊处理
-		for (int i = 1; i < n; i++)
+	int Exist(int len, string s)
+	{
+		for (int i = 0; i + len <= s.size(); i++)
 		{
-			preSum[i] = preSum[i - 1] + nums[i];
-			MyMap[preSum[i] % k].push_back(i);
+			string s_temp(s.begin() + i, s.begin() + i + len);
+			string s_temp2(s_temp);
+			reverse(s_temp2.begin(), s_temp2.end());
+			if (s_temp.compare(s_temp2) == 0) return i;
 		}
-		unordered_map<int, vector<int>>::iterator it = MyMap.begin();
-		for (; it != MyMap.end(); it++)
-		{
-			if (it->second.size() == 1) continue;
-			else if (it->second.size() >= 3) return true;
-			else
-			{
-				int temp1 = (it->second)[1];
-				int temp2 = (it->second)[0];
-				if (temp1 - temp2 > 1) return true;
-				else continue;
-			}
-		}
-		return false;
+		return -1;
+	}
+	string longestPalindrome(string s) {
+		int len = s.size();
+		for (; len >= 1; len--)
+			if (Exist(len, s) != -1) break;
+		int  i = Exist(len, s);
+		string res(s.begin()+i,s.begin()+i+len);
+		return res;
 	}
 };
 int main()
 {
-	vector<int> nums{23,2,6,4,7};
-	int k = 6;
+	string s;
+	cin >> s;
 	Solution sol;
-	cout<<sol.checkSubarraySum(nums,k)<<endl;
-	return 0;
+	cout << sol.longestPalindrome(s) << endl;
 }
