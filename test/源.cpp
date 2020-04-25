@@ -24,6 +24,5 @@ int main()
 		}
 	}
 	cout << res << endl;
-	cout << res << endl;
 	return 0;
 }
