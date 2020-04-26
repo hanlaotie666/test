@@ -18,11 +18,11 @@ int main()
 			string s;
 			cin >> s;
 			int a;
-			if (s[0] == 'P') {
+			if (s[0] == 'P'&& s[1]=='U') {
 				cin >> a;
 			}
 	
-			if (s[0] == 'P') {
+			if (s[0] == 'P'&& s[1] == 'U') {
 				myque.push(a);
 			}
 			if (s.compare("TOP") == 0) 
@@ -36,7 +36,13 @@ int main()
 				res.push_back(myque.size());
 			}
 			if (s.compare("POP") == 0)
-				myque.pop();
+			{
+				if (!myque.empty())
+					myque.pop();
+				else res.push_back(-1);
+				
+			}
+				
 			if (s.compare("CLEAR") == 0)
 			{
 				while (!myque.empty()) myque.pop();
