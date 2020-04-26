@@ -1,49 +1,50 @@
 #include<iostream>
 #include<vector>
-#include<math.h>
-#include<stdio.h>
+#include<queue>
+#include<string>
 using namespace std;
-double getMinDis(vector<pair<int, int>> A, vector<pair<int, int>> B)
-{
-	double mindis = 99999999;
-	for (int i = 0; i < A.size(); i++)
-	{
-		for (int j = 0; j < B.size(); j++)
-		{
-			int A_x = A[i].first, A_y = A[i].second;
-			int B_x = B[j].first, B_y = B[j].second;
-			if (sqrt((A_x - B_x)*(A_x - B_x) + (A_y - B_y)*(A_y - B_y)) < mindis)
-				mindis = sqrt((A_x - B_x)*(A_x - B_x) + (A_y - B_y)*(A_y - B_y));
-		}
-	}
-	return mindis;
-}
 int main()
 {
 	int T;
 	cin >> T;
-	vector<double> res;
+	vector<int> res;
 	for (int i = 0; i < T; i++)
 	{
-		vector<pair<int, int>> A, B;
-		int n;
-		cin >> n;
-		for (int j = 0; j < n; j++)
+		int Q;
+		cin >> Q;
+		queue<int> myque;
+		for (int i = 0; i < Q; i++)
 		{
-			pair<int, int> temp;
-			cin >> temp.first >> temp.second;
-			A.push_back(temp);
-		}
-		for (int j = 0; j < n; j++)
-		{
-			pair<int, int> temp;
-			cin >> temp.first >> temp.second;
-			B.push_back(temp);
-		}
-		res.push_back(getMinDis(A, B));
+			string s;
+			cin >> s;
+			int a;
+			if (s[0] == 'P') {
+				cin >> a;
+			}
+	
+			if (s[0] == 'P') {
+				myque.push(a);
+			}
+			if (s.compare("TOP") == 0) 
+			{ 
+				if (!myque.empty()) 
+					res.push_back(myque.front());
+				else res.push_back(-1);
+			}
+			if (s.compare("SIZE") == 0)
+			{
+				res.push_back(myque.size());
+			}
+			if (s.compare("POP") == 0)
+				myque.pop();
+			if (s.compare("CLEAR") == 0)
+			{
+				while (!myque.empty()) myque.pop();
+			}
 
+		}
 	}
 	for (int i = 0; i < res.size(); i++)
-		printf("%.3lf\n", res[i]);
+		cout << res[i] << endl;
 	return 0;
 }
