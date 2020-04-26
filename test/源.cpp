@@ -126,7 +126,7 @@ double cp(point *s, int low, int high)
 		}
 		return d;
 }
-void main()
+int main()
 {
 	int T;
 	cin >> T;
@@ -154,5 +154,5 @@ void main()
 	}
 	for (int i = 0; i < res.size(); i++)
 		printf("%.3lf\n", res[i]);
-
+	return 0;
 }
