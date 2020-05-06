@@ -5,12 +5,7 @@
 #define MAXSIZE 10000 
 #define Infinity 65535 
 using namespace std;
-typedef struct
-{
-	double x;
-	double y;
-	int flag;
-} point;
+//modify
 point s1[MAXSIZE], s2[MAXSIZE], s[MAXSIZE], t[MAXSIZE];
 double cp(int low, int high);
 double distance(const point u, const point v)
