@@ -29,12 +29,8 @@ int main()
 	int res = 0;
 	for (int i = 0; i < req.size(); i++)
 	{
-		int tempj = -1;
-		for (int j = 0; j < host.size(); j++)
-		{
-			if (host[j] >= req[i].first) { tempj = j; break; }
-		}
-		if (tempj != -1)
+		int tempj=lower_bound(host.begin(), host.end(), req[i].first) - host.begin();
+		if (tempj != host.size())
 		{
 			res += req[i].second;
 			host.erase(host.begin() + tempj);
