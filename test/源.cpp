@@ -1,42 +1,50 @@
-#include<iostream>
-#include<vector>
-#include<string>
-#include<algorithm>
-using namespace std;
-bool cmp(const pair<int, int>& a, const pair<int, int>& b)
-{
-	return a.second > b.second;
-}
-int main()
-{
-	int M, N;
-	cin >> M >> N;
-	vector<int> host(M,0);
-	for (int i = 0; i < M; i++) cin >> host[i];
-	sort(host.begin(), host.end());
-	int tempmax = host[M-1];
-	vector<pair<int, int>> req;
-	for (int i = 0; i < N; i++)
-	{
-		int temp1, temp2; cin >> temp1 >> temp2;
-		if (temp1 <= tempmax) {
-			pair<int, int> pa;
-			pa.first = temp1; pa.second=temp2;
-			req.push_back(pa);
-		}			
-	}
-	sort(req.begin(), req.end(), cmp);
-	int res = 0;
-	for (int i = 0; i < req.size(); i++)
-	{
-		int tempj=lower_bound(host.begin(), host.end(), req[i].first) - host.begin();
-		if (tempj != host.size())
-		{
-			res += req[i].second;
-			host.erase(host.begin() + tempj);
-		}
+import sys
+import pdb
 
-	}
-	cout << res << endl;
-	return 0;
-}
+tree=input().strip()
+sum=0
+max_sum=0
+index=0
+op=None
+path=[]
+index1,index2,index3=len(tree),len(tree),len(tree)
+while(len(tree)>0):
+    index1, index2, index3 = len(tree), len(tree), len(tree)
+    if '(' in tree:
+        index1=tree.index('(')
+    if ')' in tree:
+        index2=tree.index(')')
+    if ',' in tree:
+        index3=tree.index(',')
+    index = min(index1,index2,index3)
+    if index!=0:
+        val = int("".join(x for x in tree[:index]))
+        if not op:
+            sum += val
+        else:
+            if op == '(':
+                sum += val
+            elif op == ')':
+                sum -= path[-1]
+                path.pop(-1)
+                sum += val
+            elif op == ',':
+                sum -= path[-1]
+                path.pop(-1)
+                sum += val
+        path.append(val)
+    else:
+        sum-=path[-1]
+        path.pop(-1)
+    if index==index1:
+        op='('
+    elif index==index2:
+        op=')'
+    elif index==index3:
+        op=','
+    if sum<0:
+        sum=0
+    if max_sum<sum:
+        max_sum=sum
+    tree=tree[index+1:]
+print(max_sum)
